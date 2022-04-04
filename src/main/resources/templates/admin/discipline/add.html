@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="/admin/acceuil" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une discipline</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">Ajouter une discipline </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/discipline/add}" th:object="${classe}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Libelle</label>
+                                <input type="text" th:field="*{libelle}" class="form-control" placeholder="Enter le libellé" />
+                            </div>
+                            <!--<div class="form-group">
+                                <label >Controle</label>
+                                <select class="form-control" th:field="*{controle}">
+                                    <option value="">Choisir le contrôle concerné</option>
+                                    <option th:each="n:${controle}" th:value="${n.id}" th:text="${n.controle}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label >Matières</label>
+                                <select class="form-control" th:field="*{matiere}">
+                                    <option value="">Choisir la matière </option>
+                                    <option th:each="em:${matiere}" th:value="${em}" th:text="${em.}"></option>
+                                </select>
+                            </div>-->
+                            <br>
+                        </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enregistrer</button>
+                            <a type="button" href="/admin/discipline/list" class="btn btn-danger">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

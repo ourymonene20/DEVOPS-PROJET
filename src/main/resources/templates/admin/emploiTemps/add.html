@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="/admin/acceuil" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Emploi du temps</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">Ajouter un emploi</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/emploiTemps/add}" th:object="${emploiTemps}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Heure debut</label>
+                                <input type="time" th:field="*{heureDebut}" class="form-control" placeholder="Enter le nom" />
+                            </div>
+                            <div class="form-group">
+                                <label>Heure fin</label>
+                                <input type="time" th:field="*{heureFin}" class="form-control" placeholder="Enter le prenom" />
+                            </div>
+                            <div class="form-group">
+                                <label >Classe</label>
+                                <select class="form-control" th:field="*{professeur}">
+                                    <option value="">Choisir un professeur</option>
+                                    <option th:each="pr:${professeur}" th:value="${pr.id}" th:text="${pr.prenom}"></option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enregistrer</button>
+                            <a type="button" href="/admin/emploiTemps/list" class="btn btn-danger">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $('#image').change(function () {-->
+<!--            displayPhoto(this);-->
+<!--        });-->
+<!--    });-->
+
+<!--    function displayPhoto(fileInput) {-->
+<!--        file = fileInput.files[0];-->
+<!--        reader = new FileReader();-->
+
+<!--        reader.onload = function (e) {-->
+<!--            $('#displayPhoto').attr('src', e.target.result);-->
+<!--        };-->
+
+<!--        reader.readAsDataURL(file);-->
+<!--    }-->
+
+<!--</script>-->
+</body>
+</html>

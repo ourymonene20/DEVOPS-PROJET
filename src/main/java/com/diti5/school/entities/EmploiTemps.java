@@ -1,0 +1,27 @@
+package com.diti5.school.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class EmploiTemps implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String heureDebut;
+    private String heureFin;
+    @OneToMany(mappedBy = "emploiTemps")
+    private List<Classe> classes = new ArrayList<Classe>();
+    @ManyToOne
+    private Professeur professeur;
+}

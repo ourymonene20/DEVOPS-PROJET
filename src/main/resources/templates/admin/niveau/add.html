@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="/admin/acceuil" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">Ajouter un niveau</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/niveau/add}" th:object="${niveau}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Libelle</label>
+                                <input type="text" th:field="*{libelle}" class="form-control" placeholder="Enter le nom" />
+                            </div>
+                            <div class="form-group">
+                                <label>Option</label>
+                                <input type="text" th:field="*{option}" class="form-control" placeholder="Enter le prenom" />
+                            </div>
+                            <br>
+                        </div>
+
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enregistrer</button>
+                            <a type="button" href="/admin/niveau/list" class="btn btn-danger">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript">-->
+<!--    $(document).ready(function () {-->
+<!--        $('#image').change(function () {-->
+<!--            displayPhoto(this);-->
+<!--        });-->
+<!--    });-->
+
+<!--    function displayPhoto(fileInput) {-->
+<!--        file = fileInput.files[0];-->
+<!--        reader = new FileReader();-->
+
+<!--        reader.onload = function (e) {-->
+<!--            $('#displayPhoto').attr('src', e.target.result);-->
+<!--        };-->
+
+<!--        reader.readAsDataURL(file);-->
+<!--    }-->
+
+<!--</script>-->
+</body>
+</html>

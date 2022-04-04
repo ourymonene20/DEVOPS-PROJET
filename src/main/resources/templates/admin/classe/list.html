@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="/admin/acceuil" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nos élèves</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-info d-flex align-items-center">
+                        <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des élèves</h3>
+
+                        <div class="card-tools d-flex align-items-center">
+                            <a class="btn btn-link text-white mr-4 d-block" href="/admin/classe/showForm/" ><i class="fa fa-plus-square"></i> Nouveau</a>
+
+                            <div class="input-group input-group-md" style="width: 250px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+
+                                <th>Libelle</th>
+                                <th>Annee Scolaire</th>
+                                <th>Niveau</th>
+                                <th>Classe</th>
+                                <th >Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cl:${classes}">
+                                <td th:text="${cl.libelle}"></td>
+                                <td th:text="${cl.anneScolaire}"></td>
+                                <td th:text="${cl.niveau}"></td>
+                                <td th:text="${cl.emploiTemps}"></td>
+                                <!--td th:text="${el.classe.libelle}"></td-->
+                                <td class="text-center">
+                                    <a class="btn btn-link btn-warning" th:href="@{/admin/classe/get(id=${cl.id})}"> <i class="far fa-edit"></i> </a>
+                                    <a class="btn btn-link btn-danger" th:href="@{/admin/classe/delete(id=${cl.id})}"> <i class="far fa-trash-alt"></i> </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

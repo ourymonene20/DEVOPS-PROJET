@@ -25,6 +25,8 @@ public class Eleve implements Serializable {
     private List<Parent> parents = new ArrayList<Parent>();
     @OneToMany(mappedBy = "eleve")
     private List<AbsenceEleve> absenceEleves = new ArrayList<AbsenceEleve>();
+    @OneToMany(mappedBy = "eleve")
+    private List<Diplome> diplomes = new ArrayList<Diplome>();
     @ManyToOne
     private Classe classe;
     @ManyToMany

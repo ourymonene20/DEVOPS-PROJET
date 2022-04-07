@@ -4,7 +4,7 @@
       layout:decorate="/admin/acceuil" lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Nos élèves</title>
+    <title>Nos diplomes</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -13,10 +13,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-info d-flex align-items-center">
-                        <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des élèves</h3>
+                        <h3 class="card-title flex-grow-1"><i class="fa fa-list fa-2x"></i> Liste des diplomes</h3>
 
                         <div class="card-tools d-flex align-items-center">
-                            <a class="btn btn-link text-white mr-4 d-block" href="/admin/eleve/showForm/" ><i class="fa fa-plus-square"></i> Nouveau</a>
+                            <a class="btn btn-link text-white mr-4 d-block" href="/admin/diplome/showForm" ><i class="fa fa-plus-square"></i> Nouveau</a>
 
                             <div class="input-group input-group-md" style="width: 250px;">
                                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -34,26 +34,18 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Prenom</th>
-                                <th>Date Naiss</th>
-                                <th>Lieu Naiss</th>
-                                <th>Sexe</th>
-                                <th>Classe</th>
+                                <th>Grade</th>
+                                <th>Elève</th>
                                 <th >Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="el:${eleves}">
-                                <td th:text="${el.nom}"></td>
-                                <td th:text="${el.prenom}"></td>
-                                <td th:text="${el.dateNaissance}"></td>
-                                <td th:text="${el.lieuNaissance}"></td>
-                                <td th:text="${el.sexe}"></td>
-                                <td th:text="${el.classe.libelle}"></td>
+                            <tr th:each="d:${diplomes}">
+                                <td th:text="${d.grade}"></td>
+                                <td th:text="${d.eleve}"></td>
                                 <td class="text-center">
-                                    <a class="btn btn-link btn-warning" th:href="@{/admin/eleve/get(id=${el.id})}"> <i class="far fa-edit"></i> </a>
-                                    <a class="btn btn-link btn-danger" th:href="@{/admin/eleve/delete(id=${el.id})}"> <i class="far fa-trash-alt"></i> </a>
+                                    <a class="btn btn-link btn-warning" th:href="@{/admin/diplome/get(id=${d.id})}"> <i class="far fa-edit"></i> </a>
+                                    <a class="btn btn-link btn-danger" th:href="@{/admin/diplome/delete(id=${d.id})}"> <i class="far fa-trash-alt"></i> </a>
                                 </td>
                             </tr>
                             </tbody>

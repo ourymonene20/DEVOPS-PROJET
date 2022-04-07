@@ -26,7 +26,7 @@ public class DiplomeController {
         Diplome diplome = new Diplome();
         map.addAttribute("diplome",diplome);
         map.addAttribute("eleves", elevedao.findAll());
-        return "diplome/add";
+        return "admin/diplome/add";
     }
 
     @RequestMapping(value = "/diplome/list")
@@ -45,6 +45,11 @@ public class DiplomeController {
         }
 
         return "redirect:/admin/diplome/list";
+    }
+
+    public ModelAndView get(int id){
+        Diplome diplome = diplomedao.getById(id);
+        return new ModelAndView("admin/diplome/list", "diplome",diplome);
     }
 
     @RequestMapping(value = "/diplome/delete")

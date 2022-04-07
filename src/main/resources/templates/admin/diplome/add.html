@@ -14,64 +14,29 @@
                 <!-- general form elements -->
                 <div class="card card-info">
                     <div class="card-header bg-info">
-                        <h3 class="card-title">Ajouter un élève</h3>
+                        <h3 class="card-title">Ajouter un diplome</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form th:action="@{/admin/eleve/add}" th:object="${eleve}" method="post">
+                    <form th:action="@{/admin/diplome/add}" th:object="${diplome}" method="post">
                         <div class="card-body">
                             <div class="d-flex">
                                 <div class="form-group flex-grow-1 mr-2">
-                                    <label>Nom</label>
-                                    <input type="text" th:field="*{nom}" class="form-control" placeholder="Enter le nom" />
+                                    <label>Grade</label>
+                                    <input type="text" th:field="*{grade}" class="form-control" placeholder="Enter le nom" />
                                 </div>
                                 <div class="form-group flex-grow-1">
-                                    <label>Prenom</label>
-                                    <input type="text" th:field="*{prenom}" class="form-control" placeholder="Enter le prenom" />
+                                    <label>Eleve</label>
+                                    <input type="text" th:field="*{eleve}" class="form-control" placeholder="Enter le prenom" />
                                 </div>
                             </div>
-                            <div class="d-flex">
-                                <div class="form-group flex-grow-1 mr-2">
-                                    <label>Date naissance</label>
-                                    <input type="text" th:field="*{dateNaissance}" name="dateNaissance" class="form-control">
-                                </div>
-                                <div class="form-group flex-grow-1">
-                                    <label >Lieu naissance</label>
-                                    <input type="text" th:field="*{lieuNaissance}" class="form-control">
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="form-group flex-grow-1 mr-2">
-                                    <label >Sexe</label>
-                                    <select class="form-control" th:field="*{sexe}">
-                                        <option value="">Choisir le sexe</option>
-                                        <option class="form-control" value="M">MASCULIN</option>
-                                        <option class="form-control" value="F">FEMININ</option>
-                                    </select>
-                                </div>
-                                <div class="form-group flex-grow-1">
-                                    <label >Parent</label>
-                                    <select class="form-control" th:field="*{parents}">
-                                        <option value="">Choisir une classe</option>
-                                        <option th:each="pt:${parent}" th:value="${pt.id}" th:text="${pt.prenom}"></option>
-                                    </select>
-                                </div>
-                                <div class="form-group flex-grow-1">
-                                    <label >Classe</label>
-                                    <select class="form-control" th:field="*{classe}">
-                                        <option value="">Choisir une classe</option>
-                                        <option th:each="cl:${classe}" th:value="${cl.id}" th:text="${cl.libelle}"></option>
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
                         </div>
 
                         <!-- /.card-body -->
 
                         <div class="card-footer">
                             <button type="submit" class="btn btn-info">Enregistrer</button>
-                            <a type="button" href="/admin/eleve/list" class="btn btn-danger">Annuler</a>
+                            <a type="button" href="/admin/diplome/list" class="btn btn-danger">Annuler</a>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    stages{
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('source'){
+            steps{
+                git(
+                    url:'https://github.com/BLUFA-CLAUDE/Spring-DITI5.git'
+                )
+            }
+        }
+       stage('jfog') {
+        steps{
+            rtServer (
+                id:"Artifactory",
+                url:"http://localhost:8082/artifactory",
+                username:"claude",
+                password:"Claude@123",
+                bypassProxy:true,
+                timeout:300
+
+                )
+            }
+        }
+       stage('Upload') {
+        steps{
+            rtUpload (
+                serverId:"Artifactory",
+               spec: '''{
+                   "files":[
+                       {
+                           "pattern":"*.war",
+                           "target": "admin"
+                       }
+                    ]
+               }''',
+
+            )
+        }
+        }
+        stage('Publish build info') {
+        steps{
+            rtPublishBuildInfo (
+                serverId:"Artifactory"
+                )
+            }
+        }
+
+    }
+
+}

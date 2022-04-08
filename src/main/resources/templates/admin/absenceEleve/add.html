@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html"
+      layout:decorate="/admin/acceuil" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une absence</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- general form elements -->
+                <div class="card card-info">
+                    <div class="card-header bg-info">
+                        <h3 class="card-title">Noter une absence</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form th:action="@{/admin/absenceEleve/add}" th:object="${absenceEleve}" method="post">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Date de debut</label>
+                                <input type="date" th:field="*{dateDebut}" class="form-control" placeholder="Enter la date de debut" />
+                            </div>
+                            <div class="form-group">
+                                <label>Date de fin</label>
+                                <input  type="date" class="form-control" th:field="*{dateFin}" placeholder="Enter la date de fin" />
+                            </div>
+                            <div class="form-group">
+                                <label>Motif de absence</label>
+                                <input  type="text" class="form-control" th:field="*{motif}" placeholder="Enter le motif de absence" />
+                            </div>
+                            <div class="form-group">
+                                <label >Eleve concerné</label>
+                                <select class="form-control" th:field="*{eleve}">
+                                    <option value="">Choisir eleve concerné</option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-info">Enregistrer</button>
+                            <a type="button" href="/admin/absenceEleve/list" class="btn btn-danger">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

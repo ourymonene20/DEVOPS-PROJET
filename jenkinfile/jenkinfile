@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages{
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('source'){
+            steps{
+                git(
+                    url:'https://github.com/ourymonene20/DEVOPS-PROJET.git',
+                    credentialsId:'my_pipeline_id',
+                )
+            }
+        }
+        stage('unit_test'){
+            steps{
+                bat 'mvn test'
+            }
+        }
+        stage('code_quality'){
+            steps{
+               bat "mvn sonar:sonar -Dsonar.host.url=http://localhost:9010"
+            }
+        }
+        stage('deploy'){
+            steps{
+                bat "mvnw -Pdev -DskipTests"
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+pipeline {
+    agent any
+    stages{
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('source'){
+            steps{
+                git(
+                    url:'https://github.com/ourymonene20/DITI5-SpringPerson.git'
+                )
+            }
+        }
+       stage('jfog') {
+        steps{
+            rtServer (
+                id:"Artifactory",
+                url:"http://localhost:8082/artifactory",
+                username:"diallo",
+                password:"Sigon21@",
+                bypassProxy:true,
+                timeout:300
+
+                )
+            }
+        }
+       stage('Upload') {
+        steps{
+            rtUpload (
+                serverId:"Artifactory",
+               spec: '''{
+                   "files":[
+                       {
+                           "pattern":"*.war",
+                           "target": "gestionnaire"
+                       }
+                    ]
+               }''',
+
+            )
+        }
+        }
+        stage('Publish build info') {
+        steps{
+            rtPublishBuildInfo (
+                serverId:"Artifactory"
+g
+                )
+            }
+        }
+
+    }
+
+}

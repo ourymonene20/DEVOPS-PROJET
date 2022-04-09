@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/addSalle}"
+          th:object="${salles}" method="POST"  style="background-color:yellow";>
+
+        <fieldset>
+            <legend>
+              <pre style="color:red";> SALLE :
+              </pre>
+            </legend>
+            <div class="form-group">
+                <div class="form-group ">
+                    <label for="libelle">libelle de la salle  </label>
+                    <input type="date" th:field="*{libelle}" class="form-control" id="libelle" placeholder="libelle">
+                </div>
+
+
+                <br>
+
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <button type="submit" class="btn btn-primary">ajouter</button>
+
+
+                <button type="submit" class="btn btn-primary">supprimer</button>
+                <button type="submit" class="btn btn-primary">modifier</button>
+
+
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+</body>
+</html>

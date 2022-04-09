@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    stages{
+        stage('Clean') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('source'){
+            steps{
+                git(
+                    url:'https://github.com/ourymonene20/DITI5-SpringPerson.git'
+                )
+            }
+        }
+        stage('unit_test'){
+            steps{
+                bat 'mvn test'
+            }
+        }
+        stage('code_quality'){
+            steps{
+               bat "mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=testsonarjenkins \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=09e031ff9152d8fbb1b09a632224d1b0bd1d2693"
+            }
+        }
+
+    }
+}
